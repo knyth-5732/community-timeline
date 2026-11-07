@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>Community Timeline</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-timeline@7.7.3/styles/vis-timeline-graph2d.min.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">SHARED MEMORY</p>
+      <h1>Community Timeline</h1>
+    </div>
+    <button id="logoutBtn" class="quiet hidden">ログアウト</button>
+  </header>
+
+  <main>
+    <section id="loginPanel" class="panel narrow">
+      <h2>メンバー sign in</h2>
+      <p class="muted">登録済みメンバーのメールアドレスにログインリンクを送ります。</p>
+      <form id="loginForm">
+        <label>メールアドレス<input id="email" type="email" autocomplete="email" required placeholder="you@example.com"></label>
+        <button type="submit">ログインリンクを送信</button>
+      </form>
+      <p id="loginMessage" class="message" aria-live="polite"></p>
+    </section>
+
+    <section id="timelinePanel" class="hidden">
+      <div class="intro-row">
+        <div>
+          <h2>みんなの出来事</h2>
+          <p class="muted">時間軸を横に移動・ズームして、ピンを選択できます。</p>
+        </div>
+        <button id="reloadBtn" class="secondary">再読み込み</button>
+      </div>
+      <div id="timeline" class="timeline panel"></div>
+      <div id="eventDetail" class="panel detail hidden">
+        <p class="eyebrow">EVENT DETAIL</p>
+        <h3 id="detailTitle"></h3>
+        <p id="detailMeta" class="muted"></p>
+        <p id="detailDescription"></p>
+      </div>
+    </section>
+
+    <section id="submitPanel" class="panel narrow hidden">
+      <p class="eyebrow">COMMUNITY CONTRIBUTION</p>
+      <h2>出来事を投稿</h2>
+      <p class="muted">投稿内容はメンバー向け年表に掲載されます。</p>
+      <form id="eventForm">
+        <label>出来事の日付<input id="eventDate" type="date" required></label>
+        <label>タイトル<input id="eventTitle" maxlength="100" required placeholder="例：コミュニティ設立"></label>
+        <label>カテゴリ
+          <select id="eventCategory">
+            <option>コミュニティ</option><option>イベント</option><option>個人</option><option>お知らせ</option><option>その他</option>
+          </select>
+        </label>
+        <label>投稿者名（任意）<input id="eventAuthor" maxlength="40" placeholder="匿名でもOK"></label>
+        <label>説明<textarea id="eventDescription" maxlength="2000" rows="5" placeholder="何があった？"></textarea></label>
+        <button type="submit">投稿する</button>
+      </form>
+      <p id="submitMessage" class="message" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <footer>Community Timeline · A shared record of our moments</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/vis-timeline@7.7.3/standalone/umd/vis-timeline-graph2d.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./config.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
